@@ -86,14 +86,19 @@ class _DashBoardState extends State<DashBoard> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                         builder: (context) =>
-                            Details(dName: state.person[index].name,
+                            Details
+                              (index: index,
+                              dName: state.person[index].name,
                                 dNumber: state.person[index].phoneNumber,
                                 dAddress: state.person[index].address,
                               isFav: state.person[index].isFavorite,
-                              onTapDetFav: () { setState(() {
-                                context.read<DashboardCubit>().favChangeDet(index);
-                              });
-                              },
+                              // onTapDetFav: () {
+                              //   setState(() {
+                              //     context.read<DashboardCubit>().favChange(index);
+                              //   });
+                              //   // context.read<DashboardCubit>().favChange(index);
+                              //
+                              // },
                               )),
                   );
                 },
@@ -102,7 +107,7 @@ class _DashBoardState extends State<DashBoard> {
                 isFav: state.person[index].isFavorite,
                 onTapConFav: () {
                   setState(() {
-                  context.read<DashboardCubit>().favChangeCon(index);
+                  context.read<DashboardCubit>().favChange(index);
                   });
                 },
                 // image: state.personList[index].address,
@@ -176,4 +181,5 @@ class _ProfileContainerState extends State<ProfileContainer> {
     );
   }
 }
+
 

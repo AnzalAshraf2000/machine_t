@@ -68,17 +68,11 @@ class DashboardCubit extends Cubit<DashboardState> {
     }
  }
 
- void favChangeCon(int index)
+ void favChange(int index)
  {
    listPerson[index].isFavorite=!listPerson[index].isFavorite;
    print(listPerson[index].isFavorite);
    emit(state.copyWith(person: listPerson));
  }
 
- void favChangeDet(int index)
- {
-   listPerson[index].isFavorite =!listPerson[index].isFavorite;
-   print(listPerson[index].isFavorite);
-   emit(state.copyWith(person: listPerson));
- }
 }

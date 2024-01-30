@@ -9,7 +9,7 @@ part of 'dashboard_cubit.dart';
 
 DashboardState copyWith({
  List<ListItem>? person,
-  bool? isPress,
+  // bool? isPress,
  }){
   return DashboardState(
    person : person ?? this.person,

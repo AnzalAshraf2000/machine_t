@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'bloc/dashboard/dashboard_cubit.dart';
 
 class Details extends StatefulWidget {
  final String dName;
  final String dNumber;
  final String dAddress;
  final bool isFav;
- final Function() onTapDetFav;
+ // final Function() onTapDetFav;
+ final int index;
 
   const Details({super.key,
     required this.dName,
     required this.dNumber,
     required this.dAddress,
     required this.isFav,
-    required this.onTapDetFav});
+    // required this.onTapDetFav,
+  required this.index,
+  });
 
   @override
   State<Details> createState() => _DetailsState();
@@ -21,6 +27,7 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
+    bool isFavTemp=widget.isFav;
     return Scaffold(
       appBar: AppBar(
         title: Text('Detail Page',style: TextStyle(fontWeight: FontWeight.bold),),
@@ -43,15 +50,19 @@ class _DetailsState extends State<Details> {
              Text('     ${widget.dName}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
              SizedBox(width: 200,),
              GestureDetector(
-               onTap: widget.onTapDetFav,
-                 child: widget.isFav? Icon(Icons.favorite_border,size: 35,):
+               onTap: (){
+                 setState(() {
+                   context.read<DashboardCubit>().favChange(widget.index);
+                 });
+               },
+                 child: isFavTemp? Icon(Icons.favorite_border,size: 35,):
                  Icon(Icons.favorite,size: 35,color: Colors.red,))
            ],
          ),
          SizedBox(height: 10,),
          Text('    Phone : ${widget.dNumber}'),
          SizedBox(height: 10,),
-         Text('    Address : ${widget.dAddress}')
+         Text('    Address : ${widget.dAddress}'),
        ],
      ),
     );
