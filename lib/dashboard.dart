@@ -91,7 +91,7 @@ class _DashBoardState extends State<DashBoard> {
                               dName: state.person[index].name,
                                 dNumber: state.person[index].phoneNumber,
                                 dAddress: state.person[index].address,
-                              isFav: state.person[index].isFavorite,
+                              isFavDet: state.person[index].isFavorite,
                               // onTapDetFav: () {
                               //   setState(() {
                               //     context.read<DashboardCubit>().favChange(index);
@@ -104,7 +104,7 @@ class _DashBoardState extends State<DashBoard> {
                 },
                 name: state.person[index].name,
                 phNo: state.person[index].phoneNumber,
-                isFav: state.person[index].isFavorite,
+                isFavCon: state.person[index].isFavorite,
                 onTapConFav: () {
                   setState(() {
                   context.read<DashboardCubit>().favChange(index);
@@ -128,17 +128,15 @@ class _DashBoardState extends State<DashBoard> {
 class ProfileContainer extends StatefulWidget {
   final String? name;
   final String? phNo;
-  // final String? image;
   final Function() onTap;
   final Function() onTapConFav;
-  final bool isFav;
+  final bool isFavCon;
 
   const ProfileContainer({super.key,
     this.name,
     this.phNo,
-    // this.image,
     required this.onTap,
-    required this.isFav,
+    required this.isFavCon,
     required this.onTapConFav,
 
   });
@@ -172,7 +170,7 @@ class _ProfileContainerState extends State<ProfileContainer> {
           ),
           GestureDetector(
             onTap: widget.onTapConFav,
-              child: widget.isFav?Icon(Icons.favorite_border,size: 40,):Icon(Icons.favorite,size :40,color: Colors.red,),),
+              child: widget.isFavCon?Icon(Icons.favorite_border,size: 40,):Icon(Icons.favorite,size :40,color: Colors.red,),),
           GestureDetector(
             child: Icon(Icons.play_arrow_outlined, size: 40,),
             onTap: widget.onTap,)

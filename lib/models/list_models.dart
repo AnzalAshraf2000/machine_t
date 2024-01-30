@@ -7,6 +7,6 @@ class ListItem {
   ListItem({required this.name,
     required this.phoneNumber,
     required this.address,
-    this.isFavorite=false
+    required this.isFavorite,
   });
 }

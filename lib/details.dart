@@ -7,7 +7,7 @@ class Details extends StatefulWidget {
  final String dName;
  final String dNumber;
  final String dAddress;
- final bool isFav;
+ final bool isFavDet;
  // final Function() onTapDetFav;
  final int index;
 
@@ -15,7 +15,7 @@ class Details extends StatefulWidget {
     required this.dName,
     required this.dNumber,
     required this.dAddress,
-    required this.isFav,
+    required this.isFavDet,
     // required this.onTapDetFav,
   required this.index,
   });
@@ -27,7 +27,7 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
-    bool isFavTemp=widget.isFav;
+    bool isFavTemp=widget.isFavDet;
     return Scaffold(
       appBar: AppBar(
         title: Text('Detail Page',style: TextStyle(fontWeight: FontWeight.bold),),
