@@ -62,9 +62,23 @@ class DashboardCubit extends Cubit<DashboardState> {
 
 
   void onInit(){
-    // if(i==0){
-    //   i++;
-      emit(state.copyWith(personList: listPerson));
-    // }
+    if(i==0){
+      i++;
+      emit(state.copyWith(person: listPerson));
+    }
+ }
+
+ void favChangeCon(int index)
+ {
+   listPerson[index].isFavorite=!listPerson[index].isFavorite;
+   print(listPerson[index].isFavorite);
+   emit(state.copyWith(person: listPerson));
+ }
+
+ void favChangeDet(int index)
+ {
+   listPerson[index].isFavorite =!listPerson[index].isFavorite;
+   print(listPerson[index].isFavorite);
+   emit(state.copyWith(person: listPerson));
  }
 }

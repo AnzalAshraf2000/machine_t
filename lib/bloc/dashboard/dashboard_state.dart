@@ -1,18 +1,18 @@
 part of 'dashboard_cubit.dart';
 
  class DashboardState extends Equatable {
-   final List<ListItem> personList;
+   final List<ListItem> person;
   const DashboardState({
-    this.personList = const <ListItem>[],
+    this.person = const <ListItem>[],
   });
 
 
 DashboardState copyWith({
- List<ListItem>? personList,
+ List<ListItem>? person,
   bool? isPress,
  }){
   return DashboardState(
-   personList : personList ?? this.personList,
+   person : person ?? this.person,
   );
 }
 
@@ -20,7 +20,7 @@ DashboardState copyWith({
 
   @override
   List<Object> get props => [
-    personList
+    person
   ];
 }
 

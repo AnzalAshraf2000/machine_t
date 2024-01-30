@@ -4,11 +4,15 @@ class Details extends StatefulWidget {
  final String dName;
  final String dNumber;
  final String dAddress;
+ final bool isFav;
+ final Function() onTapDetFav;
 
   const Details({super.key,
     required this.dName,
     required this.dNumber,
-    required this.dAddress});
+    required this.dAddress,
+    required this.isFav,
+    required this.onTapDetFav});
 
   @override
   State<Details> createState() => _DetailsState();
@@ -38,7 +42,10 @@ class _DetailsState extends State<Details> {
            children: [
              Text('     ${widget.dName}',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
              SizedBox(width: 200,),
-             Icon(Icons.favorite,color: Colors.red,size: 35,)
+             GestureDetector(
+               onTap: widget.onTapDetFav,
+                 child: widget.isFav? Icon(Icons.favorite_border,size: 35,):
+                 Icon(Icons.favorite,size: 35,color: Colors.red,))
            ],
          ),
          SizedBox(height: 10,),

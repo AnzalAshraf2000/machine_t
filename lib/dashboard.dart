@@ -79,20 +79,32 @@ class _DashBoardState extends State<DashBoard> {
       body: BlocBuilder<DashboardCubit, DashboardState>(
         builder: (context, state) {
           return ListView.builder(
-            itemCount: state.personList.length,
+            itemCount: state.person.length,
             itemBuilder: (context, index) {
               return ProfileContainer(
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                         builder: (context) =>
-                            Details(dName: state.personList[index].name,
-                                dNumber: state.personList[index].phoneNumber,
-                                dAddress: state.personList[index].address)),
+                            Details(dName: state.person[index].name,
+                                dNumber: state.person[index].phoneNumber,
+                                dAddress: state.person[index].address,
+                              isFav: state.person[index].isFavorite,
+                              onTapDetFav: () { setState(() {
+                                context.read<DashboardCubit>().favChangeDet(index);
+                              });
+                              },
+                              )),
                   );
                 },
-                name: state.personList[index].name,
-                phNo: state.personList[index].phoneNumber,
+                name: state.person[index].name,
+                phNo: state.person[index].phoneNumber,
+                isFav: state.person[index].isFavorite,
+                onTapConFav: () {
+                  setState(() {
+                  context.read<DashboardCubit>().favChangeCon(index);
+                  });
+                },
                 // image: state.personList[index].address,
                 // name: profiles[index]['name'],
                 // phno: profiles[index]['phno'],
@@ -113,12 +125,17 @@ class ProfileContainer extends StatefulWidget {
   final String? phNo;
   // final String? image;
   final Function() onTap;
+  final Function() onTapConFav;
+  final bool isFav;
 
   const ProfileContainer({super.key,
     this.name,
     this.phNo,
     // this.image,
     required this.onTap,
+    required this.isFav,
+    required this.onTapConFav,
+
   });
 
   @override
@@ -149,7 +166,8 @@ class _ProfileContainerState extends State<ProfileContainer> {
             ],
           ),
           GestureDetector(
-              child: Icon(Icons.favorite, color: Colors.red, size: 40,)),
+            onTap: widget.onTapConFav,
+              child: widget.isFav?Icon(Icons.favorite_border,size: 40,):Icon(Icons.favorite,size :40,color: Colors.red,),),
           GestureDetector(
             child: Icon(Icons.play_arrow_outlined, size: 40,),
             onTap: widget.onTap,)
